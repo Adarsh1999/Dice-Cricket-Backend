@@ -20,8 +20,7 @@ app.use((req, res, next) => {
 
 //database connection
 
-const connection_url =
-  "mongodb+srv://admin:pass@word@cluster0.caap5.mongodb.net/dice-criket?retryWrites=true&w=majority";
+const connection_url =""
 mongoose.connect(connection_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
