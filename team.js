@@ -10,7 +10,7 @@ const playerNames = {
       "Marnus Labuschagne",
       "Pat Cummins",
       "Mitchell Starc",
-      "Kane Richardson",
+      "Josh Hazlewood",
       "Adam Zampa",
     ],
     New_Zealand: [
@@ -50,7 +50,7 @@ const playerNames = {
       "Sam Curran",
       "Chris Woakes",
       "Adil Rashid",
-      "Liam Plunkett",
+      "Mark Wood",
     ],
   };
 
