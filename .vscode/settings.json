@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "sonar",
+        "projectKey": "trial123_bosch"
+    }
+}
