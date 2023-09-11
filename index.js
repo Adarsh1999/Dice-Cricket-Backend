@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 import cors from "cors"; // Import the cors middleware
 import diceGame from "./dbGame.js";
 import playerNames from "./team.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+
 
 const app = express();
 
@@ -21,7 +26,7 @@ app.use((req, res, next) => {
 });
 
 // Database connection
-const connection_url = "mongodb+srv://admin:pass%40word@cluster0.caap5.mongodb.net/dice-cricket?retryWrites=true&w=majority";
+const connection_url = process.env.MONGODB_URL;
 
 mongoose.connect(connection_url, {
   useNewUrlParser: true,
