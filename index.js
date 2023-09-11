@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 // Database connection
-const connection_url = "mongodb+srv://admin:pass%40word@cluster0.caap5.mongodb.net/dice-cricket?retryWrites=true&w=majority";
+const connection_url = "";
 
 mongoose.connect(connection_url, {
   useNewUrlParser: true,
