@@ -13,9 +13,10 @@ const app = express();
 
 // Use the cors middleware
 app.use(cors({
-  origin: "http://localhost:3000", // Adjust this to your frontend URL
+  origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Allow both localhost and 127.0.0.1
   credentials: true,
-}));
+ }));
+ 
 
 app.use(express.json());
 
@@ -42,7 +43,7 @@ let response = {};
 
 app.get("/teams", (req, res) => {
   const { q, p } = req.query;
-  const teams = ["Australia", "New Zealand", "England", "India"];
+  const teams = ["Australia", "New_Zealand", "England", "India"];
   
   if (!teams.includes(q) || !teams.includes(p)) {
     return res.status(400).send("One or both teams not selected correctly");
@@ -100,5 +101,5 @@ app.post(`/history/find`, async (req, res) => {
 const port = process.env.PORT || 3001;
 
 app.listen(port, () =>
-  console.log(`Server running on ${port}, http://localhost:${port}`)
+  console.log(`Server running on ${port}, http://127.0.0.1:${port}`)
 );

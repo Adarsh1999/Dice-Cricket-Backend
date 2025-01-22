@@ -1,7 +1,7 @@
 
 const playerNames = {
     Australia: [
-      "Aaron Finch",
+      "Travis Head",
       "David Warner",
       "Steven Smith",
       "Glenn Maxwell",
@@ -15,16 +15,16 @@ const playerNames = {
     ],
     New_Zealand: [
       "Devon Conway",
-      "Martin Guptill",
+      "Rachin Ravindra",
       "Kane Williamson",
-      "Ross Taylor",
-      "James Neesham",
-      "Kyle Jamieson",
+      "Daryl Mitchell",
+      "Glenn Phillips",
       "Tom Latham",
       "Mitchell Santner",
+      "Ish Sodhi",
       "Trent Boult",
       "Tim Southee",
-      "Lockie Ferguson",
+      "Henry Nicholls",
     ],
     India: [
       "Rohit Sharma",
@@ -34,7 +34,7 @@ const playerNames = {
       "M.S Dhoni",
       "Hardik Pandya",
       "Ravindra Jadeja",
-      "Yuzvendra Chahal",
+      "Akshar Patel",
       "Mohammed Shami",
       "Jasprit Bumrah",
       "Kuldeep Yadav",
