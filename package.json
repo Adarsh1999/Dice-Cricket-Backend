@@ -1,5 +1,5 @@
 {
-  "name": "atlas_starter_nodejs",
+  "name": "dice-cricket-backend",
   "version": "1.0.0",
   "description": "MongoDB Node.js driver and Atlas Starter Application",
   "main": "app.js",

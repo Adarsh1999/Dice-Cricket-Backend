@@ -37,7 +37,7 @@ const playerNames = {
       "Akshar Patel",
       "Mohammed Shami",
       "Jasprit Bumrah",
-      "Kuldeep Yadav",
+      "Arshdeep Singh",
     ],
     England: [
       "Jonny Baristow",
@@ -51,6 +51,19 @@ const playerNames = {
       "Chris Woakes",
       "Adil Rashid",
       "Mark Wood",
+    ],
+    South_Africa: [
+      "Quinton de Kock",
+      "Temba Bavuma",
+      "Rassie van der Dussen",
+      "Aiden Markram",
+      "Heinrich Klaasen",
+      "David Miller",
+      "Marco Jansen",
+      "Keshav Maharaj",
+      "Kagiso Rabada",
+      "Lungi Ngidi",
+      "Tabraiz Shamsi",
     ],
   };
 
