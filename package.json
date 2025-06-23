@@ -1,20 +1,37 @@
 {
   "name": "dice-cricket-backend",
   "version": "1.0.0",
-  "description": "MongoDB Node.js driver and Atlas Starter Application",
-  "main": "app.js",
+  "description": "Backend API for Dice Cricket Game - A cricket simulation game using dice rolls",
+  "main": "index.js",
   "author": "adarsh",
   "license": "ISC",
-  "type": "module",
-  "scripts": {
-    "start": "node index.js"
+  "type": "module",  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Linting not configured yet\"",
+    "audit": "npm audit",
+    "audit-fix": "npm audit fix"
   },
+  "keywords": [
+    "cricket",
+    "dice",
+    "game",
+    "express",
+    "mongodb",
+    "api"
+  ],
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongodb": "^5.1.0",
-    "mongoose": "^7.4.1",
-    "nodemon": "^2.0.21"
+    "mongoose": "^7.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

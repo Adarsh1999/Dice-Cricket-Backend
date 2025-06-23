@@ -1,105 +1,87 @@
 import express from "express";
-import mongoose from "mongoose";
-import cors from "cors"; // Import the cors middleware
-import diceGame from "./dbGame.js";
-import playerNames from "./team.js";
+import cors from "cors";
 import dotenv from 'dotenv';
+import { connectDB } from './config/database.js';
+import { validateEnvironment } from './utils/validation.js';
+import { errorHandler, notFound } from './middleware/errorHandler.js';
+import { DEFAULT_PORT, LIMITS } from './constants/index.js';
+import gameRoutes from './routes/gameRoutes.js';
 
+// Load environment variables
 dotenv.config();
 
-
+// Validate environment variables
+try {
+  validateEnvironment();
+} catch (error) {
+  console.error('❌ Environment validation failed:', error.message);
+  console.error('💡 Please ensure you have a .env file with MONGODB_URL configured');
+  process.exit(1);
+}
 
 const app = express();
+const PORT = process.env.PORT || DEFAULT_PORT;
 
-// Use the cors middleware
-app.use(cors({
-  origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Allow both localhost and 127.0.0.1
+// Connect to database
+connectDB(process.env.MONGODB_URL);
+
+// CORS configuration
+const corsOptions = {
+  origin: process.env.CORS_ORIGINS?.split(',') || [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+  ],
   credentials: true,
- }));
- 
+  optionsSuccessStatus: 200 // For legacy browser support
+};
 
-app.use(express.json());
+// Middleware
+app.use(cors(corsOptions));
+app.use(express.json({ limit: LIMITS.JSON_LIMIT }));
+app.use(express.urlencoded({ extended: true, limit: LIMITS.JSON_LIMIT }));
 
+// Security headers
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
 });
 
-// Database connection
-const connection_url = process.env.MONGODB_URL;
-
-mongoose.connect(connection_url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const con = mongoose.connection;
-
-con.on("open", () => {
-  console.log("Connected to MongoDB...");
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - ${req.ip}`);
+  next();
 });
 
-let response = {};
-
-app.get("/teams", (req, res) => {
-  const { q, p } = req.query;
-  const teams = ["Australia", "New_Zealand", "England", "India", "South_Africa"];
-  
-  if (!teams.includes(q) || !teams.includes(p)) {
-    return res.status(400).send("One or both teams not selected correctly");
-  }
-
-  const response = {
-    team1: playerNames[q],
-    team2: playerNames[p]
-  };
-
-  res.json(response);
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Dice Cricket Backend is running',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
 });
 
-
-app.get("/history/all", async (req, res) => {
-  try {
-    const data = await diceGame.find({});
-    res.status(200).send(data);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+// Favicon handler to prevent 404 errors
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end(); // No content response
 });
 
-app.post("/history/new", async (req, res) => {
-  const dbMessage = req.body;
-  try {
-    const data = await diceGame.create(dbMessage);
-    res.status(201).send(data);
-  } catch (err) {
-    res.status(500).send(err);
-  }
+// API routes
+app.use('/api', gameRoutes);
+
+// 404 handler
+app.use(notFound);
+
+// Error handler
+app.use(errorHandler);
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📱 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🌐 Health check: http://localhost:${PORT}/health`);
+  console.log(`📚 API Documentation: See API.md file`);
 });
-
-app.get("/history/delete", async (req, res) => {
-  try {
-    const data = await diceGame.deleteMany({});
-    res.json(data);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-app.post(`/history/find`, async (req, res) => {
-  const { id } = req.body;
-
-  try {
-    const data = await diceGame.find({ _id: id });
-    res.status(200).send(data);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
-
-const port = process.env.PORT || 3001;
-
-app.listen(port, () =>
-  console.log(`Server running on ${port}, http://127.0.0.1:${port}`)
-);
