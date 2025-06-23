@@ -43,7 +43,7 @@ let response = {};
 
 app.get("/teams", (req, res) => {
   const { q, p } = req.query;
-  const teams = ["Australia", "New_Zealand", "England", "India"];
+  const teams = ["Australia", "New_Zealand", "England", "India", "South_Africa"];
   
   if (!teams.includes(q) || !teams.includes(p)) {
     return res.status(400).send("One or both teams not selected correctly");
