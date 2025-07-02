@@ -79,4 +79,4 @@ const diceGameSchema = new mongoose.Schema({
 diceGameSchema.index({ createdAt: -1 });
 diceGameSchema.index({ team1: 1, team2: 1 });
 
-export default mongoose.model("DiceGame", diceGameSchema);
+export default mongoose.model("DiceGame", diceGameSchema, "dicecrickets");

@@ -69,7 +69,9 @@ app.get('/favicon.ico', (req, res) => {
   res.status(204).end(); // No content response
 });
 
-// API routes
+// Backward compatibility routes (for existing frontend)
+app.use('/', gameRoutes); // This allows /teams, /history etc. to work
+// API routes (new preferred paths)
 app.use('/api', gameRoutes);
 
 // 404 handler
