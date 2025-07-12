@@ -20,6 +20,13 @@ All responses follow this structure:
 }
 ```
 
+## Recent Updates
+
+### Version 1.1.0
+- Added over tracking functionality
+- New fields in team data: `currentOver` and `ballInOver`
+- Backward compatibility maintained with default values (0.0) for existing matches
+
 ## Endpoints
 
 ### Health Check
@@ -128,7 +135,9 @@ Save a new game to history.
     "status": [1, 1, 0, 1, 1],
     "striker": [0, 1, 0, 1, 0],
     "fallOn": ["45/2", "78/3"],
-    "playerFell": ["Shikhar Dhawan", "Virat Kohli"]
+    "playerFell": ["Shikhar Dhawan", "Virat Kohli"],
+    "currentOver": 25,
+    "ballInOver": 2
   },
   "team2_data": {
     "score": 145,
@@ -139,7 +148,9 @@ Save a new game to history.
     "status": [1, 1, 1, 0, 1],
     "striker": [1, 0, 1, 0, 1],
     "fallOn": ["23/1", "67/2"],
-    "playerFell": ["David Warner", "Steven Smith"]
+    "playerFell": ["David Warner", "Steven Smith"],
+    "currentOver": 24,
+    "ballInOver": 1
   }
 }
 ```

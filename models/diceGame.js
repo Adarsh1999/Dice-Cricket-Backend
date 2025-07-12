@@ -39,6 +39,17 @@ const teamDataSchema = new mongoose.Schema({
   playerFell: {
     type: [String],
     default: []
+  },
+  currentOver: {
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  ballInOver: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 5
   }
 }, { _id: false });
 
