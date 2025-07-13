@@ -45,9 +45,9 @@ const playerNames = {
   ],
   England: [
     "Jonny Bairstow",
-    "Jason Roy",
+    "Phil Salt",
     "Joe Root",
-    "Moien Ali",
+    "Harry Brook",
     "Jos Buttler",
     "Ben Stokes",
     "Jofra Archer",
