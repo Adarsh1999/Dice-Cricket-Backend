@@ -23,17 +23,15 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-        working-directory: ./Dice-Cricket-Backend
 
       - name: Zip artifact for deployment
         run: zip -r release.zip ./* -x "node_modules/*"
-        working-directory: ./Dice-Cricket-Backend
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./Dice-Cricket-Backend/release.zip
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
