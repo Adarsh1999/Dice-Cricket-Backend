@@ -18,13 +18,15 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install and build
+      - name: Install dependencies (production)
         run: |
-          npm install
+          npm ci --omit=dev
           npm run build --if-present
 
-      - name: Zip artifact for deployment
-        run: zip -r release.zip ./* -x "node_modules/*"
+      - name: Zip artifact for deployment (include node_modules)
+        run: |
+          zip -r release.zip . \
+            -x ".git/*" ".github/*" ".vscode/*" "tests/*" ".env"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -56,4 +58,3 @@ jobs:
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
-
