@@ -76,6 +76,19 @@ const diceGameSchema = new mongoose.Schema({
     type: teamDataSchema,
     default: () => ({})
   },
+  team1_data2: {
+    type: teamDataSchema,
+    default: () => ({})
+  },
+  team2_data2: {
+    type: teamDataSchema,
+    default: () => ({})
+  },
+  matchType: {
+    type: String,
+    enum: ['oneday', 'test'],
+    default: 'oneday'
+  },
   gameStatus: {
     type: String,
     enum: ['ongoing', 'completed', 'abandoned'],
