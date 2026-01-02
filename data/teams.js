@@ -6,9 +6,9 @@
 const playerNames = {
   Australia: [
     "Travis Head",
-    "David Warner",
+    "Mitchell Marsh",
     "Steven Smith",
-    "Glenn Maxwell",
+    "Cameron Green",
     "Alex Carey",
     "Marcus Stoinis",
     "Marnus Labuschagne",
@@ -28,7 +28,7 @@ const playerNames = {
     "Ish Sodhi",
     "Trent Boult",
     "Tim Southee",
-    "Henry Nicholls",
+    "Matt Henry",
   ],
   India: [
     "Rohit Sharma",
@@ -44,8 +44,8 @@ const playerNames = {
     "Arshdeep Singh",
   ],
   England: [
-    "Jonny Bairstow",
-    "Phil Salt",
+    "Ben Duckett",
+    "Olllie Pope",
     "Joe Root",
     "Harry Brook",
     "Jos Buttler",
@@ -59,7 +59,7 @@ const playerNames = {
   South_Africa: [
     "Quinton de Kock",
     "Temba Bavuma",
-    "Rassie van der Dussen",
+    "Tristan Stubbs",
     "Aiden Markram",
     "Heinrich Klaasen",
     "David Miller",
