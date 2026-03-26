@@ -22,6 +22,11 @@ All responses follow this structure:
 
 ## Recent Updates
 
+### Version 1.2.0
+- Added backend CRUD endpoints for in-progress saved matches
+- Saved matches now persist named save slots separately from completed history
+- Default CORS list now includes Vite dev origins on port `5173`
+
 ### Version 1.1.0
 - Added over tracking functionality
 - New fields in team data: `currentOver` and `ballInOver`
@@ -114,6 +119,75 @@ Retrieve all game records.
   ]
 }
 ```
+
+### Get Saved Matches
+Retrieve all saved in-progress matches.
+
+**Endpoint:** `GET /api/saved-matches`
+
+**Response:**
+```json
+{
+  "success": true,
+  "count": 2,
+  "data": [
+    {
+      "id": "67e3d8d9b53f9d0a6eb5f4d1",
+      "name": "Mumbai chase",
+      "team1": "India",
+      "team2": "Australia",
+      "matchType": "oneday",
+      "source": "manual",
+      "snapshot": { "...": "..." },
+      "createdAt": "2026-03-26T14:10:00.000Z",
+      "updatedAt": "2026-03-26T14:12:00.000Z"
+    }
+  ]
+}
+```
+
+### Create Saved Match
+Create a new saved in-progress match.
+
+**Endpoint:** `POST /api/saved-matches`
+
+**Request Body:**
+```json
+{
+  "name": "Mumbai chase",
+  "source": "manual",
+  "snapshot": {
+    "saveName": "Mumbai chase",
+    "state": {
+      "team1": "India",
+      "team2": "Australia",
+      "matchType": "oneday"
+    },
+    "appState": {
+      "innings": 2,
+      "score": 120,
+      "wickets": 4
+    }
+  }
+}
+```
+
+### Update Saved Match
+Rename or replace an existing saved match.
+
+**Endpoint:** `PUT /api/saved-matches/:id`
+
+**Request Body Example:**
+```json
+{
+  "name": "Mumbai chase - death overs"
+}
+```
+
+### Delete Saved Match
+Delete a saved in-progress match.
+
+**Endpoint:** `DELETE /api/saved-matches/:id`
 
 ### Create Game Record
 Save a new game to history.

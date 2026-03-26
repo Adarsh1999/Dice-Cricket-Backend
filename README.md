@@ -66,6 +66,12 @@ The server will start on the configured port (default: 3001).
 ### Teams
 - **GET** `/api/teams?q=<team1>&p=<team2>` - Get players for two teams
 
+### Saved Matches
+- **GET** `/api/saved-matches` - Get all saved in-progress matches
+- **POST** `/api/saved-matches` - Create a saved in-progress match
+- **PUT** `/api/saved-matches/:id` - Rename or replace a saved in-progress match
+- **DELETE** `/api/saved-matches/:id` - Delete a saved in-progress match
+
 ### Game History
 - **GET** `/api/history` - Get all game records
 - **POST** `/api/history` - Create new game record
@@ -91,6 +97,7 @@ Dice-Cricket-Backend/
 │   └── errorHandler.js      # Error handling middleware
 ├── models/
 │   └── diceGame.js          # Mongoose schema for game data
+│   └── savedMatch.js        # Mongoose schema for in-progress saved matches
 ├── routes/
 │   └── gameRoutes.js        # API route definitions
 ├── utils/
